@@ -89,16 +89,18 @@ class Home extends Component {
       <ul className="tabs">
         {menuList.map(each => (
           <li key={each.id}>
-            <button
-              type="button"
-              onClick={this.onChangeTab}
-              value={each.menuTab}
-              className={
-                each.menuTab === activeTab ? 'active-btn' : 'normal-btn'
-              }
-            >
-              {each.menuTab}
-            </button>
+            <h1>
+              <button
+                type="button"
+                onClick={this.onChangeTab}
+                value={each.menuTab}
+                className={
+                  each.menuTab === activeTab ? 'active-btn' : 'normal-btn'
+                }
+              >
+                {each.menuTab}
+              </button>
+            </h1>
           </li>
         ))}
       </ul>

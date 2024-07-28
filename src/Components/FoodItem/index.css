@@ -79,7 +79,7 @@
   margin: 5px 10px;
 }
 
-.calories{
+.calories {
   font-family: 'Roboto';
   font-size: 18px;
   color: rgb(232, 153, 8);
@@ -91,8 +91,9 @@
     width: 45%;
     padding: 5px;
   }
-  .calories{
-  font-size: 14px;}
+  .calories {
+    font-size: 14px;
+  }
   .food-pic {
     height: 120px;
     width: 120px;
