@@ -1,6 +1,6 @@
 .food-card {
   display: flex;
-  justify-content: space-between;
+  /*justify-content: space-between; */
   align-items: center;
   padding: 15px;
   margin: 10px;
@@ -10,9 +10,32 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
+.veg-border {
+  border: 1px solid #00923f;
+  align-self: flex-start;
+  width: 40px;
+}
+
+.non-veg-border {
+  border: 1px solid #92282a;
+}
+
+.veg-round {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: #00923f;
+  margin: 5px;
+}
+
+.non-veg-round {
+  background-color: #92282a;
+}
+
 .food-details-container {
-  width: 60%;
+  width: 70%;
   padding: 5px;
+  margin-left: 10px;
 }
 .food-name {
   font-family: 'Roboto';
@@ -86,10 +109,15 @@
   font-weight: 700;
 }
 
+.end-cont{
+  width: 30%;
+}
+
 @media screen and (max-width: 760px) {
   .food-details-container {
     width: 45%;
     padding: 5px;
+    margin-left: 5px;
   }
   .calories {
     font-size: 14px;

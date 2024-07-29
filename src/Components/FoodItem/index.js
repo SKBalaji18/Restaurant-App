@@ -1,73 +1,83 @@
-import {Component} from 'react'
-import CartContext from '../Context'
-
 import './index.css'
 
-class FoodItem extends Component {
-  render() {
-    const {foodData} = this.props
+const FoodItem = props => {
+  const {foodData, cartList, addItem, removeItem} = props
 
-    return (
-      <CartContext.Consumer>
-        {value => {
-          const {incrementCartItemQuantity, decrementCartItemQuantity} = value
-
-          const onAddFood = () => {
-            incrementCartItemQuantity({...foodData})
-          }
-
-          const onDecFood = () => {
-            decrementCartItemQuantity({...foodData})
-          }
-          return (
-            <li className="food-card">
-              <div className="food-details-container">
-                <h1 className="food-name">{foodData.dishName}</h1>
-                <p className="food-price">
-                  {foodData.dishCurrency} {foodData.dishPrice}
-                </p>
-                <p className="food-desc">{foodData.dishDescription}</p>
-                {foodData.dishAvailability ? (
-                  <div className="quan-btn">
-                    <button
-                      className="dec-btn"
-                      type="button"
-                      onClick={onDecFood}
-                    >
-                      -
-                    </button>
-                    <p className="food-count">{foodData.count}</p>
-                    <button
-                      className="dec-btn"
-                      type="button"
-                      onClick={onAddFood}
-                    >
-                      +
-                    </button>
-                  </div>
-                ) : (
-                  <p className="na-err">Not Available</p>
-                )}
-                {foodData.addonCat.length > 0 && (
-                  <p className="cust-avail">Customizations available</p>
-                )}
-              </div>
-              <div>
-                <p className="calories">{foodData.dishCalories} calories</p>
-              </div>
-              <div className="food-pic-cont">
-                <img
-                  className="food-pic"
-                  src={foodData.dishImage}
-                  alt={foodData.id}
-                />
-              </div>
-            </li>
-          )
-        }}
-      </CartContext.Consumer>
-    )
+  const onAddFood = () => {
+    addItem(foodData)
   }
+
+  const onDecFood = () => {
+    removeItem(foodData)
+  }
+
+  const getQuantity = () => {
+    const cartItem = cartList.find(item => item.dishId === foodData.dishId)
+    return cartItem ? cartItem.quantity : 0
+  }
+
+  const controllerButton = () => (
+    <div className="quan-btn">
+      <button
+        className="dec-btn"
+        type="button"
+        onClick={onDecFood}
+        id={foodData.dishId}
+      >
+        -
+      </button>
+      <p className="food-count">{getQuantity()}</p>
+      <button
+        className="dec-btn"
+        type="button"
+        onClick={onAddFood}
+        id={foodData.dishId}
+      >
+        +
+      </button>
+    </div>
+  )
+
+  return (
+    <li className="food-card">
+      <div
+        className={`type-width veg-border ${
+          foodData.dishType === 1 ? 'non-veg-border' : ''
+        } me-3`}
+      >
+        <div
+          className={`veg-round ${
+            foodData.dishType === 1 ? 'non-veg-round' : ''
+          }`}
+        />
+      </div>
+      <div className="food-details-container">
+        <h1 className="food-name">{foodData.dishName}</h1>
+        <p className="food-price">
+          {foodData.dishCurrency} {foodData.dishPrice}
+        </p>
+        <p className="food-desc">{foodData.dishDescription}</p>
+        {foodData.dishAvailability ? (
+          controllerButton()
+        ) : (
+          <p className="na-err">Not Available</p>
+        )}
+        {foodData.addonCat.length > 0 && (
+          <p className="cust-avail">Customizations available</p>
+        )}
+      </div>
+      <div className="end-cont">
+        <p className="calories">{foodData.dishCalories} calories</p>
+      </div>
+      <div className="food-pic-cont">
+        <img
+          className="food-pic"
+          src={foodData.dishImage}
+          alt={foodData.dishId}
+        />
+      </div>
+    </li>
+  )
 }
 
 export default FoodItem
