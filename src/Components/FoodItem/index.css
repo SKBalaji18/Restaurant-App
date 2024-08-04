@@ -128,3 +128,15 @@
     margin: 5px 10px;
   }
 }
+
+.cart-btn {
+  padding: 10px 16px;
+  background-color: #00923f;
+  color: #fff;
+  font-family: 'Roboto';
+  font-weight: normal;
+  border: none;
+  border-radius: 6px;
+  margin: 5px;
+  cursor: pointer;
+}

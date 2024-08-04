@@ -13,6 +13,11 @@ nav {
   font-size: 32px;
   font-weight: bold;
   margin: 10px 20px;
+  text-decoration: none;
+}
+
+.nav-head-link{
+  text-decoration: none;
 }
 
 .nav-right {
@@ -89,6 +94,18 @@ nav {
   border-radius: 50%;
 }
 
+.cart-icon-button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.cart-icon {
+  font-size: 35px;
+  color: #585555;
+}
+
 @media screen and (max-width: 768px) {
   .rest-name {
     font-size: 26px;
@@ -96,4 +113,16 @@ nav {
   .nav-ord-let {
     display: none;
   }
+}
+
+.logout-btn {
+  color: white;
+  background-color: #ff6347;
+  font-size: 12px;
+  border: none;
+  border-radius: 12px;
+  margin: 6px;
+  cursor: pointer;
+  padding: 7px;
+  margin-left: 18px;
 }

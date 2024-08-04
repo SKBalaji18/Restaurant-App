@@ -1,36 +1,38 @@
+import {useState, useContext} from 'react'
 import './index.css'
 
+import CartContext from '../../context/CartContext'
+
 const FoodItem = props => {
-  const {foodData, cartList, addItem, removeItem} = props
+  const {foodData} = props
 
-  const onAddFood = () => {
-    addItem(foodData)
+  const [quantity, setQuantity] = useState(0)
+  const {addItemToCart} = useContext(CartContext)
+
+  const onAddFoodCart = () => {
+    addItemToCart({...foodData, quantity})
   }
 
-  const onDecFood = () => {
-    removeItem(foodData)
-  }
+  const onIncreaseQuantity = () => setQuantity(prevState => prevState + 1)
 
-  const getQuantity = () => {
-    const cartItem = cartList.find(item => item.dishId === foodData.dishId)
-    return cartItem ? cartItem.quantity : 0
-  }
+  const onDecreaseQuantity = () =>
+    setQuantity(prevState => (prevState > 0 ? prevState - 1 : 0))
 
   const controllerButton = () => (
     <div className="quan-btn">
       <button
         className="dec-btn"
         type="button"
-        onClick={onDecFood}
+        onClick={onDecreaseQuantity}
         id={foodData.dishId}
       >
         -
       </button>
-      <p className="food-count">{getQuantity()}</p>
+      <p className="food-count">{quantity}</p>
       <button
         className="dec-btn"
         type="button"
-        onClick={onAddFood}
+        onClick={onIncreaseQuantity}
         id={foodData.dishId}
       >
         +
@@ -64,6 +66,11 @@ const FoodItem = props => {
         )}
         {foodData.addonCat.length > 0 && (
           <p className="cust-avail">Customizations available</p>
+        )}
+        {quantity > 0 && (
+          <button type="button" className="cart-btn" onClick={onAddFoodCart}>
+            ADD TO CART
+          </button>
         )}
       </div>
       <div className="end-cont">
